@@ -1,78 +1,75 @@
-<!doctype html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Matt R. - personal portfolio.">
-  <title>Matt R.</title>
-  <link rel="stylesheet" href="style.css">
+<meta name="description" content="Matt R. - personal portfolio."/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<title>Matt R.</title>
 </head>
+
+
 <body>
-  <main>
-    <h1>Matt R.</h1>
+<div id="maincontent" style="margin-top:70px">
+  <h2>Matt R.</h2>
 
-    <p>Some things about me:</p>
+  Some things about me:
+  <ul>
+    <li>I am [role / kind of work].</li>
+    <li>I am based in [place].</li>
+    <li>I am currently working on [current project or focus].</li>
+    <li>I was previously [role / company / useful context].</li>
+    <li>
+      You can find me on
+      <a href="https://github.com/psstmatt">GitHub</a>
+      and
+      <a href="https://www.linkedin.com/in/psstmatt/">LinkedIn</a>.
+    </li>
+  </ul>
+
+  Some things I believe:
+  <ul>
+    <li>[Belief about craft, taste, or product work.]</li>
     <ul>
-      <li>I am [role / kind of work].</li>
-      <li>I am based in [place].</li>
-      <li>I am currently working on [current project or focus].</li>
-      <li>I was previously [role / company / useful context].</li>
-      <li>
-        You can find me on
-        <a href="https://github.com/psstmatt">GitHub</a>
-        and
-        <a href="https://www.linkedin.com/in/psstmatt/">LinkedIn</a>.
-      </li>
+      <li>[A short supporting thought.]</li>
+      <li>[Another supporting thought.]</li>
     </ul>
-
-    <p>Some things I believe:</p>
+    <li>[Belief about technology and people.]</li>
     <ul>
-      <li>
-        [Belief about craft, taste, or product work.]
-        <ul>
-          <li>[A short supporting thought.]</li>
-          <li>[Another supporting thought.]</li>
-        </ul>
-      </li>
-      <li>
-        [Belief about technology and people.]
-        <ul>
-          <li>[A short supporting thought.]</li>
-        </ul>
-      </li>
-      <li>
-        [Belief about teams, systems, or decision making.]
-        <ul>
-          <li>[A short supporting thought.]</li>
-        </ul>
-      </li>
+      <li>[A short supporting thought.]</li>
     </ul>
-
-    <p>Some things I have made:</p>
+    <li>[Belief about teams, systems, or decision making.]</li>
     <ul>
-      <li>[Project name]: [one-line description and link to add].</li>
-      <li>[Project name]: [one-line description and link to add].</li>
-      <li>[Project name]: [one-line description and link to add].</li>
+      <li>[A short supporting thought.]</li>
     </ul>
+  </ul>
 
-    <p>Some writing / notes:</p>
-    <ul>
-      <li>[Post, note, talk, or artifact to add].</li>
-      <li>[Post, note, talk, or artifact to add].</li>
-    </ul>
-  </main>
+  Some things I have made:
+  <ul>
+    <li>[Project name]: [one-line description and link to add].</li>
+    <li>[Project name]: [one-line description and link to add].</li>
+    <li>[Project name]: [one-line description and link to add].</li>
+  </ul>
 
-  <div id="konami-overlay" class="konami-overlay" hidden aria-hidden="true" role="dialog" aria-labelledby="konami-title">
-    <div class="konami-box">
-      <h2 id="konami-title">secret</h2>
-      <p>This is the quiet place for the portfolio PDF.</p>
-      <p><a href="portfolio.pdf" download="Matt-R-Portfolio.pdf">download portfolio.pdf</a></p>
-      <p>
-        <button id="konami-close" type="button">close</button>
-      </p>
-    </div>
+  Some writing / notes:
+  <ul>
+    <li>[Post, note, talk, or artifact to add].</li>
+    <li>[Post, note, talk, or artifact to add].</li>
+  </ul>
+</div>
+
+<div id="konami-keys" class="konami-keys" aria-live="polite" aria-hidden="true"></div>
+
+<div id="konami-overlay" class="konami-overlay" hidden aria-hidden="true" role="dialog" aria-labelledby="konami-title">
+  <div id="konami-stage" class="konami-stage" aria-hidden="true"></div>
+  <div class="konami-box">
+    <h2 id="konami-title">secret</h2>
+    <p>This is the quiet place for the portfolio PDF.</p>
+    <p><a href="portfolio.pdf" download="Matt-R-Portfolio.pdf">download portfolio.pdf</a></p>
+    <p>
+      <button id="konami-close" type="button">close</button>
+    </p>
   </div>
+</div>
 
-  <script src="script.js"></script>
+<script type="module" src="script.js"></script>
 </body>
 </html>

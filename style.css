@@ -1,32 +1,146 @@
 body {
-  background: white;
-  color: black;
-  margin: 40px auto;
-  max-width: 720px;
-  padding: 0 16px;
+  line-height: 1.4;
+  font-size: 16px;
+  padding: 0 10px;
+  margin: 50px auto;
+  max-width: 650px;
 }
 
-li {
-  margin: 0.25em 0;
+#maincontent
+{
+max-width:42em;margin:15 auto;
+
+}
+
+.konami-keys {
+  align-items: center;
+  bottom: 18px;
+  box-sizing: border-box;
+  display: none;
+  gap: 6px;
+  justify-content: center;
+  left: 0;
+  padding: 0 10px;
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  z-index: 10;
+}
+
+.konami-keys.is-visible {
+  display: flex;
+}
+
+.konami-key {
+  background: #fff;
+  border: 1px solid #000;
+  box-shadow: 0 2px 0 #000;
+  box-sizing: border-box;
+  color: #000;
+  font-family: monospace;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1;
+  min-width: 30px;
+  padding: 8px 9px;
+  position: relative;
+  text-align: center;
+  transition: background-color 120ms ease, box-shadow 120ms ease, color 120ms ease, transform 120ms ease;
+}
+
+.konami-key.is-hit {
+  background: #00fff0;
+  box-shadow: 0 0 18px #00fff0, 0 0 48px #6f00ff;
+  color: #000;
+  transform: translateY(-8px) scale(1.25);
+}
+
+.konami-key.is-next {
+  box-shadow: 0 2px 0 #000, 0 0 0 2px #00f;
+}
+
+.konami-key.is-miss {
+  background: #f00;
+  box-shadow: 0 0 18px #f00;
+  color: #fff;
+  transform: rotate(-5deg);
+}
+
+.konami-spark {
+  animation: spark-pop 520ms ease-out forwards;
+  background: #ff0;
+  border-radius: 50%;
+  height: 6px;
+  left: 50%;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
 }
 
 .konami-overlay {
-  background: white;
-  color: black;
+  background: #000;
+  color: #fff;
   inset: 0;
   overflow: auto;
   padding: 32px 16px;
   position: fixed;
-  z-index: 1;
+  z-index: 20;
+}
+
+.konami-stage {
+  inset: 0;
+  position: fixed;
+  z-index: 0;
+}
+
+.konami-stage canvas {
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 
 .konami-box {
-  border: 1px solid black;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #fff;
+  box-shadow: 0 0 40px #00fff0, 0 0 120px rgba(111, 0, 255, 0.7);
+  color: #000;
   margin: 80px auto;
   max-width: 480px;
   padding: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.konami-box a {
+  color: #00f;
 }
 
 button {
   font: inherit;
+}
+
+@keyframes spark-pop {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--spark-x)), calc(-50% + var(--spark-y))) scale(0.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .konami-key,
+  .konami-spark {
+    transition: none;
+    animation-duration: 1ms;
+  }
+
+  .konami-box {
+    box-shadow: 0 0 0 2px #00fff0;
+  }
 }
