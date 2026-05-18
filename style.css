@@ -80,8 +80,8 @@ max-width:42em;margin:15 auto;
 }
 
 .konami-overlay {
-  background: #000;
-  color: #fff;
+  background: #fff;
+  color: #000;
   inset: 0;
   overflow: auto;
   padding: 32px 16px;
@@ -89,32 +89,11 @@ max-width:42em;margin:15 auto;
   z-index: 20;
 }
 
-.konami-stage {
-  inset: 0;
-  position: fixed;
-  z-index: 0;
-}
-
-.konami-stage canvas {
-  display: block;
-  height: 100%;
-  width: 100%;
-}
-
 .konami-box {
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid #fff;
-  box-shadow: 0 0 40px #00fff0, 0 0 120px rgba(111, 0, 255, 0.7);
-  color: #000;
+  border: 1px solid #000;
   margin: 80px auto;
   max-width: 480px;
   padding: 16px;
-  position: relative;
-  z-index: 1;
-}
-
-.konami-box a {
-  color: #00f;
 }
 
 button {
@@ -138,9 +117,5 @@ button {
   .konami-spark {
     transition: none;
     animation-duration: 1ms;
-  }
-
-  .konami-box {
-    box-shadow: 0 0 0 2px #00fff0;
   }
 }

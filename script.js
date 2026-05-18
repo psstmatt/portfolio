@@ -1,3 +1,5 @@
+'use strict';
+
 const sequence = [
   { key: 'ArrowUp', label: '↑' },
   { key: 'ArrowUp', label: '↑' },
@@ -14,22 +16,11 @@ const sequence = [
 const overlay = document.getElementById('konami-overlay');
 const closeButton = document.getElementById('konami-close');
 const keyRail = document.getElementById('konami-keys');
-const stage = document.getElementById('konami-stage');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const threeReady = import('https://unpkg.com/three@0.184.0/build/three.module.js')
-  .catch(function () {
-    return null;
-  });
 
 let index = 0;
 let missTimer = 0;
 let hideTimer = 0;
-let renderer = null;
-let scene = null;
-let camera = null;
-let material = null;
-let animationFrame = 0;
-let startTime = 0;
 
 function normalizeKey(event) {
   if (event.key.length === 1) {
@@ -116,7 +107,6 @@ function openOverlay() {
   overlay.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
   closeButton.focus();
-  startShader();
 }
 
 function closeOverlay() {
@@ -126,114 +116,6 @@ function closeOverlay() {
   index = 0;
   renderKeys();
   hideRailSoon();
-  stopShader();
-}
-
-async function startShader() {
-  stopShader();
-
-  if (reducedMotion.matches) {
-    return;
-  }
-
-  const THREE = await threeReady;
-
-  if (!THREE || overlay.hidden) {
-    return;
-  }
-
-  try {
-    renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    stage.appendChild(renderer.domElement);
-
-    scene = new THREE.Scene();
-    camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    material = new THREE.ShaderMaterial({
-      uniforms: {
-        time: { value: 0 },
-        resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) }
-      },
-      vertexShader: `
-        void main() {
-          gl_Position = vec4(position, 1.0);
-        }
-      `,
-      fragmentShader: `
-        uniform float time;
-        uniform vec2 resolution;
-
-        void main() {
-          vec2 uv = gl_FragCoord.xy / resolution.xy;
-          vec2 center = uv - 0.5;
-          center.x *= resolution.x / resolution.y;
-
-          float radius = length(center);
-          float angle = atan(center.y, center.x);
-          float rings = sin(radius * 42.0 - time * 5.8);
-          float spokes = sin(angle * 9.0 + time * 2.0);
-          float pulse = smoothstep(0.72, 0.0, radius) * (0.5 + 0.5 * rings);
-          float flare = pow(max(0.0, 1.0 - radius), 3.0);
-
-          vec3 cyan = vec3(0.0, 1.0, 0.94);
-          vec3 violet = vec3(0.44, 0.0, 1.0);
-          vec3 gold = vec3(1.0, 0.9, 0.0);
-          vec3 color = mix(violet, cyan, pulse);
-          color += gold * max(0.0, spokes) * flare;
-          color += cyan * flare * 1.5;
-
-          float alpha = clamp(pulse * 0.85 + flare * 0.9, 0.0, 0.95);
-          gl_FragColor = vec4(color, alpha);
-        }
-      `
-    });
-
-    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
-    scene.add(mesh);
-    startTime = performance.now();
-    animateShader();
-  } catch (error) {
-    stopShader();
-  }
-}
-
-function animateShader() {
-  if (!renderer || !material || !scene || !camera) {
-    return;
-  }
-
-  material.uniforms.time.value = (performance.now() - startTime) / 1000;
-  renderer.render(scene, camera);
-  animationFrame = window.requestAnimationFrame(animateShader);
-}
-
-function resizeShader() {
-  if (!renderer || !material) {
-    return;
-  }
-
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  material.uniforms.resolution.value.set(window.innerWidth, window.innerHeight);
-}
-
-function stopShader() {
-  if (animationFrame) {
-    window.cancelAnimationFrame(animationFrame);
-    animationFrame = 0;
-  }
-
-  if (renderer) {
-    renderer.dispose();
-    if (renderer.domElement.parentNode) {
-      renderer.domElement.parentNode.removeChild(renderer.domElement);
-    }
-  }
-
-  renderer = null;
-  scene = null;
-  camera = null;
-  material = null;
 }
 
 document.addEventListener('keydown', function (event) {
@@ -276,5 +158,4 @@ document.addEventListener('keydown', function (event) {
 });
 
 closeButton.addEventListener('click', closeOverlay);
-window.addEventListener('resize', resizeShader);
 renderKeys();

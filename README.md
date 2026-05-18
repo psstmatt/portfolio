@@ -2,14 +2,14 @@
 
 A very plain personal portfolio for Matt R., inspired by the small-web document style of nat.org.
 
-The normal page is intentionally tiny: no framework, no build step, no package manager, and no generated assets required. The hidden Konami code effect loads Three.js from a pinned CDN module URL.
+The site is intentionally tiny: no framework, no build step, no package manager, no external scripts, and no generated assets required.
 
 ## Files
 
 ```text
-index.html      visible page content and hidden effect shell
-style.css       nat.org-style page rules plus namespaced Konami effects
-script.js       Konami key rail, shader panel, and PDF link behavior
+index.html      visible page content and hidden PDF panel
+style.css       nat.org-style page rules plus namespaced Konami key rail
+script.js       Konami key rail and PDF panel behavior
 portfolio.pdf   placeholder PDF
 ```
 
@@ -31,7 +31,7 @@ python3 -m http.server 8000
 
 Type the Konami code: `↑ ↑ ↓ ↓ ← → ← → B A`.
 
-Correct keys flash at the bottom of the page. Completing the sequence opens the hidden PDF panel and starts the shader background when WebGL is available.
+Correct keys flash at the bottom of the page. Completing the sequence opens the hidden PDF panel.
 
 ## GitHub Pages
 
