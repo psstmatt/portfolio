@@ -6,10 +6,77 @@ body {
   max-width: 650px;
 }
 
+a {
+  color: #000;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+a:hover,
+a:focus-visible {
+  animation: rainbow-link 5s linear infinite;
+  background-image: linear-gradient(
+    90deg,
+    #ff3b30,
+    #ff9500,
+    #ffcc00,
+    #34c759,
+    #00c7be,
+    #007aff,
+    #af52de,
+    #ff3b30
+  );
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 300% 2px;
+  text-decoration-color: transparent;
+}
+
+a:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 3px;
+}
+
+::selection {
+  background-color: rgba(0, 122, 255, 0.14);
+  color: inherit;
+  text-shadow: none;
+}
+
 #maincontent
 {
 max-width:42em;margin:15 auto;
 
+}
+
+.selectable-word::selection {
+  color: inherit;
+  text-shadow: none;
+}
+
+.selection-tone-0::selection {
+  background-color: rgba(175, 82, 222, 0.18);
+}
+
+.selection-tone-1::selection {
+  background-color: rgba(0, 199, 190, 0.2);
+}
+
+.selection-tone-2::selection {
+  background-color: rgba(0, 122, 255, 0.18);
+}
+
+.selection-tone-3::selection {
+  background-color: rgba(255, 45, 85, 0.16);
+}
+
+.selection-tone-4::selection {
+  background-color: rgba(52, 199, 89, 0.18);
+}
+
+.selection-tone-5::selection {
+  background-color: rgba(255, 149, 0, 0.16);
 }
 
 .konami-keys {
@@ -112,7 +179,23 @@ button {
   }
 }
 
+@keyframes rainbow-link {
+  0% {
+    background-position: 0 100%;
+  }
+
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  a:hover,
+  a:focus-visible {
+    animation: none;
+    background-size: 100% 2px;
+  }
+
   .konami-key,
   .konami-spark {
     transition: none;

@@ -8,8 +8,8 @@ The site is intentionally tiny: no framework, no build step, no package manager,
 
 ```text
 index.html      visible page content and hidden PDF panel
-style.css       nat.org-style page rules plus namespaced Konami key rail
-script.js       Konami key rail and PDF panel behavior
+style.css       plain page rules, link hover accents, and selection colors
+script.js       Konami key rail, PDF panel behavior, and per-word selection setup
 favicon.svg     site favicon
 portfolio.pdf   portfolio PDF
 ```
@@ -21,6 +21,11 @@ Open `index.html` directly in a browser, or serve the folder with any static ser
 ```bash
 python3 -m http.server 8000
 ```
+
+## Interactions
+
+Links stay plain until hover or keyboard focus, then get a restrained animated rainbow underline.
+Selected homepage text uses soft per-word color highlights.
 
 ## Easter Egg
 
