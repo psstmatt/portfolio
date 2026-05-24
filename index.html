@@ -3,76 +3,110 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Matt Reynolds | Hey from Matt!</title>
-  <meta name="description" content="Matt Reynolds makes products people love to use. A small personal index about speed, taste, energy, and tools for creative work.">
+  <title>Matt Reynolds | Product Design Portfolio</title>
+  <meta name="description" content="A sketch-rail product design portfolio for Matt Reynolds, organized by public-shareable company project nodes.">
   <meta name="author" content="Matt Reynolds">
   <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#faf9f4">
   <link rel="canonical" href="https://psstmatt.github.io/2026-portfolio/">
-  <meta property="og:title" content="Matt Reynolds">
-  <meta property="og:description" content="A small personal index about speed, taste, energy, and tools for creative work.">
+  <meta property="og:title" content="Matt Reynolds | Product Design Portfolio">
+  <meta property="og:description" content="Senior/staff product design work across Boeing, Expedia, Uber, Meta, and TikTok.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://psstmatt.github.io/2026-portfolio/">
   <meta property="og:site_name" content="Matt Reynolds">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Matt Reynolds">
-  <meta name="twitter:description" content="A small personal index about speed, taste, energy, and tools for creative work.">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="twitter:title" content="Matt Reynolds | Product Design Portfolio">
+  <meta name="twitter:description" content="A quiet, sketch-inspired horizontal work timeline.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <main id="maincontent">
-    <header class="site-header">
-      <h1>Matt Reynolds</h1>
+  <a class="skip-link" href="#project-sheet">Skip to selected project</a>
 
-      <nav class="site-nav" aria-label="Elsewhere">
-        <a href="https://www.linkedin.com/in/psstmatt/">LinkedIn</a>
-        <span aria-hidden="true">·</span>
-        <a href="https://x.com/psstmatt">X</a>
-        <span aria-hidden="true">·</span>
-        <a href="https://github.com/psstmatt">GitHub</a>
-      </nav>
-    </header>
+  <header class="site-header" aria-label="Site header">
+    <button class="brand" id="download-prompt-button" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="download-dialog">
+      <span class="brand-mark" aria-hidden="true">
+        <img src="assets/avatar/matt-glitch-avatar.jpeg" alt="">
+      </span>
+      <span>Matt Reynolds</span>
+    </button>
+    <nav class="site-links" aria-label="External links">
+      <a href="https://www.linkedin.com/in/psstmatt/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/psstmatt" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.tiktok.com/@psttmatt" target="_blank" rel="noopener noreferrer">TikTok</a>
+    </nav>
+  </header>
 
-    <section aria-labelledby="about-title">
-      <h2 id="about-title">Some things about me</h2>
-      <ul>
-        <li>I grew up in Redlands, California</li>
-        <li>I went to the University of Washington</li>
-        <li>I make amazing products that billions of people love to use</li>
-      </ul>
-    </section>
+  <main id="top">
+    <section class="timeline-world" aria-labelledby="world-title">
+      <h1 class="sr-only" id="world-title">Matt Reynolds product design portfolio</h1>
 
-    <section aria-labelledby="beliefs-title">
-      <h2 id="beliefs-title">Some things I believe</h2>
-      <ul>
-        <li>
-          Speed creates truth
-          <ul>
-            <li>Momentum exposes what actually matters</li>
-            <li>Slow processes often protect ambiguity, not quality</li>
-            <li>A week is 2% of the year</li>
-          </ul>
-        </li>
-        <li>
-          Taste matters, energy matters
-          <ul>
-            <li>Enthusiasm is a force multiplier</li>
-            <li>People do their best work when they are obsessed with the problem</li>
-            <li>Better to get dopamine from improving ideas than defending them</li>
-          </ul>
-        </li>
-        <li>
-          As human beings it is our right to reshape the universe to our preferences
-          <ul>
-            <li>Technology, which is really just <a href="https://en.wikipedia.org/wiki/The_Beginning_of_Infinity">knowledge</a>, enables this</li>
-            <li>You should probably work on raising the ceiling, not the floor</li>
-          </ul>
-        </li>
-      </ul>
+      <p class="world-note">Senior / staff product designer across Boeing, Expedia, Uber, Meta, and current confidential GenAI work.</p>
+
+      <div class="rail-viewport" id="rail-viewport" tabindex="0" aria-label="Horizontal sketch timeline. Use arrow keys or scroll horizontally.">
+        <div class="rail-track" id="rail-track">
+          <svg class="thread-svg" id="thread-svg" aria-hidden="true"></svg>
+          <svg class="rail-svg" id="rail-svg" aria-hidden="true"></svg>
+          <div class="project-nodes" id="project-nodes"></div>
+        </div>
+      </div>
+
+      <div class="rail-actions" aria-label="Timeline controls">
+        <button class="nav-button" type="button" data-direction="-1" aria-label="Previous project">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>
+        </button>
+        <p class="rail-count" id="rail-count" aria-live="polite">15 / 16</p>
+        <button class="nav-button" type="button" data-direction="1" aria-label="Next project">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+
+      <section class="project-sheet" id="project-sheet" aria-live="polite" aria-labelledby="sheet-title">
+        <button class="sheet-handle" type="button" aria-expanded="false" aria-controls="sheet-summary">
+          <span class="sheet-handle-text">More</span>
+        </button>
+
+        <div class="sheet-main">
+          <img class="sheet-logo" id="sheet-logo" src="assets/favicons/meta.ico" alt="Meta logo">
+          <div class="sheet-title-group">
+            <p class="sheet-kicker" id="sheet-kicker">Meta / May 2022-April 2024</p>
+            <h2 id="sheet-title">Meta AI app</h2>
+          </div>
+          <p class="sheet-impact" id="sheet-impact">AI product work exploring useful, approachable creative and assistant experiences.</p>
+        </div>
+
+        <dl class="sheet-meta" id="sheet-meta"></dl>
+
+        <div class="sheet-side">
+          <div class="sheet-progress" aria-label="Timeline progress">
+            <div class="progress-rail" id="progress-rail"></div>
+          </div>
+
+          <div class="sheet-summary" id="sheet-summary" hidden>
+            <p id="sheet-summary-copy"></p>
+            <ul class="tag-list" id="sheet-tags"></ul>
+          </div>
+        </div>
+      </section>
     </section>
   </main>
 
+  <div class="download-dialog" id="download-dialog" role="dialog" aria-labelledby="download-dialog-title" hidden>
+    <div class="download-card">
+      <button class="dialog-close" id="download-close-button" type="button" aria-label="Close download prompt">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg>
+      </button>
+      <p class="download-kicker">Matt Reynolds</p>
+      <h2 id="download-dialog-title">Download resume + portfolio?</h2>
+      <p class="download-copy">Save PDF copies for later, or keep exploring the rail.</p>
+      <div class="download-actions">
+        <button class="download-link primary" id="download-both-button" type="button">Download both</button>
+        <a class="download-link" href="assets/downloads/matt-reynolds-resume.pdf" download>Resume PDF</a>
+        <a class="download-link" href="assets/downloads/matt-reynolds-portfolio.pdf" download>Portfolio PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
