@@ -207,21 +207,20 @@ const KONAMI_SEQUENCE = [
 ];
 
 const MOBILE_UNLOCK_SEQUENCE = [
-  { gesture: "up", label: "↑" },
-  { gesture: "up", label: "↑" },
-  { gesture: "down", label: "↓" },
-  { gesture: "down", label: "↓" },
-  { gesture: "left", label: "←" },
-  { gesture: "right", label: "→" },
-  { gesture: "left", label: "←" },
-  { gesture: "right", label: "→" },
+  { gesture: "tap", label: "↑" },
+  { gesture: "tap", label: "↑" },
+  { gesture: "tap", label: "↓" },
+  { gesture: "tap", label: "↓" },
+  { gesture: "tap", label: "←" },
+  { gesture: "tap", label: "→" },
+  { gesture: "tap", label: "←" },
+  { gesture: "tap", label: "→" },
   { gesture: "tap", label: "•" },
   { gesture: "tap", label: "•" }
 ];
 
 const KONAMI_INPUT_RESET_DELAY = 4200;
 const KONAMI_UNLOCK_RESET_DELAY = 5000;
-const SECRET_GESTURE_DISTANCE = 30;
 const SECRET_TAP_DISTANCE = 14;
 const SECRET_TAP_DURATION = 420;
 
@@ -258,6 +257,7 @@ let konamiInputResetTimer;
 let konamiUnlockResetTimer;
 let secretPointerStart;
 let suppressNextNodeClickUntil = 0;
+let feedbackTimer;
 
 reducedMotionQuery.addEventListener?.("change", (event) => {
   prefersReducedMotion = event.matches;
@@ -280,9 +280,7 @@ function canUseHaptics() {
   return !prefersReducedMotion && coarsePointerQuery.matches && "vibrate" in navigator;
 }
 
-function pulseHaptic(type = "tick") {
-  if (!canUseHaptics()) return;
-
+function pulseHaptic(type = "tick", target) {
   const patterns = {
     tick: 5,
     snap: 7,
@@ -291,7 +289,37 @@ function pulseHaptic(type = "tick") {
     unlock: [12, 34, 18]
   };
 
-  navigator.vibrate(patterns[type] || patterns.tick);
+  if (canUseHaptics()) {
+    navigator.vibrate(patterns[type] || patterns.tick);
+    return;
+  }
+
+  pulseVisualFeedback(type, target);
+}
+
+function pulseVisualFeedback(type, target) {
+  if (prefersReducedMotion || !coarsePointerQuery.matches) return;
+
+  const element = getFeedbackElement(target);
+  if (!element) return;
+
+  window.clearTimeout(feedbackTimer);
+  element.classList.remove("is-tactile-feedback", "is-unlock-feedback");
+
+  window.requestAnimationFrame(() => {
+    element.classList.add(type === "unlock" ? "is-unlock-feedback" : "is-tactile-feedback");
+    feedbackTimer = window.setTimeout(() => {
+      element.classList.remove("is-tactile-feedback", "is-unlock-feedback");
+    }, type === "unlock" ? 360 : 190);
+  });
+}
+
+function getFeedbackElement(target) {
+  if (target instanceof Element) {
+    return target.closest(".device-shell") || target;
+  }
+
+  return document.querySelector(".project-node.is-active .device-shell");
 }
 
 function getRailMetrics() {
@@ -306,10 +334,9 @@ function getRailMetrics() {
   const lift = isMobile
     ? clamp(viewportHeight * 0.23, 108, 132)
     : clamp(viewportHeight * 0.24, 110, 136);
-  const arcLift = isMobile ? clamp(viewportHeight * 0.044, 22, 34) : 0;
   const trackWidth = sidePad * 2 + spacing * (projects.length - 1);
 
-  return { viewportWidth, viewportHeight, spacing, sidePad, baseline, lift, arcLift, trackWidth };
+  return { viewportWidth, viewportHeight, spacing, sidePad, baseline, lift, trackWidth };
 }
 
 function renderPreview(project) {
@@ -450,7 +477,7 @@ function renderNodes() {
   projectNodes.querySelectorAll(".project-node").forEach((node) => {
     node.addEventListener("click", () => {
       if (performance.now() < suppressNextNodeClickUntil) return;
-      pulseHaptic("tap");
+      pulseHaptic("tap", node);
       setActiveProject(Number(node.dataset.index), true);
     });
     node.addEventListener("pointerdown", handleSecretPointerDown);
@@ -661,6 +688,7 @@ function isActiveSecretNode(node) {
 function handleSecretPointerDown(event) {
   const node = event.currentTarget;
   if (!isActiveSecretNode(node)) return;
+  if (!(event.target instanceof Element) || !event.target.closest(".device-shell")) return;
   if (event.pointerType === "mouse" && event.button !== 0) return;
 
   secretPointerStart = {
@@ -671,33 +699,25 @@ function handleSecretPointerDown(event) {
   };
 }
 
-function classifySecretGesture(dx, dy, elapsed) {
+function isSecretTap(dx, dy, elapsed) {
   const absX = Math.abs(dx);
   const absY = Math.abs(dy);
 
-  if (elapsed <= SECRET_TAP_DURATION && absX <= SECRET_TAP_DISTANCE && absY <= SECRET_TAP_DISTANCE) {
-    return "tap";
-  }
-
-  if (Math.max(absX, absY) < SECRET_GESTURE_DISTANCE) return "";
-  if (absY > absX * 1.18) return dy < 0 ? "up" : "down";
-  if (absX > absY * 1.08) return dx < 0 ? "left" : "right";
-  return "";
+  return elapsed <= SECRET_TAP_DURATION && absX <= SECRET_TAP_DISTANCE && absY <= SECRET_TAP_DISTANCE;
 }
 
 function handleSecretPointerUp(event) {
   if (!secretPointerStart || secretPointerStart.id !== event.pointerId) return;
 
-  const gesture = classifySecretGesture(
-    event.clientX - secretPointerStart.x,
-    event.clientY - secretPointerStart.y,
-    performance.now() - secretPointerStart.time
-  );
+  const dx = event.clientX - secretPointerStart.x;
+  const dy = event.clientY - secretPointerStart.y;
+  const elapsed = performance.now() - secretPointerStart.time;
+  const isTap = isSecretTap(dx, dy, elapsed);
 
   secretPointerStart = null;
-  if (!gesture) return;
+  if (!isTap) return;
 
-  const result = applySecretInput(gesture, "gesture");
+  const result = applySecretInput("tap", "gesture");
   if (!result.handled) return;
 
   suppressNextNodeClickUntil = performance.now() + 360;
@@ -737,9 +757,7 @@ function buildGeometry() {
 
   state.points = projects.map((project, index) => {
     const x = metrics.sidePad + metrics.spacing * index;
-    const progress = projects.length > 1 ? index / (projects.length - 1) : 0;
-    const curveOffset = metrics.arcLift ? 4 * progress * (1 - progress) * metrics.arcLift : 0;
-    const y = metrics.baseline - curveOffset;
+    const y = metrics.baseline;
     const artifactY = y - metrics.lift;
     return { x, y, artifactY };
   });
@@ -894,13 +912,13 @@ document.addEventListener("keydown", (event) => {
 
 downloadPromptButton?.addEventListener("click", () => {
   const shouldOpen = !downloadPromptGroup?.classList.contains("is-open");
-  pulseHaptic(shouldOpen ? "confirm" : "tap");
+  pulseHaptic(shouldOpen ? "confirm" : "tap", downloadPromptButton);
   setDownloadLinksOpen(shouldOpen);
 });
 
 document.querySelectorAll(".site-links a, .download-popout a").forEach((link) => {
   link.addEventListener("click", () => {
-    pulseHaptic("tap");
+    pulseHaptic("tap", link);
   }, { passive: true });
 });
 

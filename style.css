@@ -185,10 +185,26 @@ a:focus-visible,
 
 .download-popout a,
 .site-links a {
+  align-items: center;
   border-radius: 999px;
   color: var(--muted);
+  display: inline-flex;
+  justify-content: center;
   padding: 0.53rem 0.68rem;
   white-space: nowrap;
+}
+
+.site-links a {
+  min-height: 2.16rem;
+  padding: 0;
+  width: 2.16rem;
+}
+
+.social-icon {
+  display: block;
+  fill: currentColor;
+  height: 1.05rem;
+  width: 1.05rem;
 }
 
 .download-popout a:hover,
@@ -197,6 +213,40 @@ a:focus-visible,
 .site-links a:focus-visible {
   background: rgba(17, 17, 17, 0.055);
   color: var(--ink);
+}
+
+.brand.is-tactile-feedback,
+.site-links a.is-tactile-feedback,
+.device-shell.is-tactile-feedback {
+  animation: tactile-tick 180ms ease-out;
+}
+
+.device-shell.is-unlock-feedback {
+  animation: tactile-unlock 340ms ease-out;
+}
+
+@keyframes tactile-tick {
+  0%,
+  100% {
+    transform: translateZ(0) scale(1);
+  }
+
+  48% {
+    transform: translateZ(0) scale(0.985);
+  }
+}
+
+@keyframes tactile-unlock {
+  0%,
+  100% {
+    transform: translateZ(0) scale(1);
+    filter: saturate(1);
+  }
+
+  40% {
+    transform: translateZ(0) scale(1.018);
+    filter: saturate(1.35);
+  }
 }
 
 .timeline-world {
@@ -808,7 +858,15 @@ a:focus-visible,
   .download-popout a,
   .site-links a {
     min-height: 2.26rem;
+  }
+
+  .download-popout a {
     padding: 0.59rem 0.64rem;
+  }
+
+  .site-links a {
+    padding: 0;
+    width: 2.26rem;
   }
 
   .rail-path {
@@ -859,6 +917,9 @@ a:focus-visible,
   .download-popout a,
   .site-links a {
     font-size: 0.72rem;
+  }
+
+  .download-popout a {
     padding-inline: 0.56rem;
   }
 

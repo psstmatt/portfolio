@@ -31,9 +31,9 @@ assets/favicons/    company favicon assets for project identification
 - The selected label stays centered on the active node and shows only company, date range, and project name.
 - The header name reveals quiet `Portfolio` and `Resume` download links on hover, focus, or tap. Both currently point to the resume PDF.
 - Typing the Konami code on the TikTok GenAI node replaces `Locked` with progress inputs, locks timeline movement before the left/right commands, shows `Unlocked` on completion, then returns to `Locked` after 5 seconds.
-- On touch devices, the same hidden unlock maps to the active TikTok device frame as: swipe up, swipe up, swipe down, swipe down, swipe left, swipe right, swipe left, swipe right, tap, tap.
+- On touch devices, the same hidden unlock advances by tapping the active TikTok device frame or screen area 10 times.
 - `?unlock=true` starts the TikTok node in its temporary unlocked state for QA.
-- Tiny haptics use the Web Vibration API when supported, only on discrete taps/snaps/unlocks, and are disabled for reduced-motion users.
+- Tiny haptics use the Web Vibration API where supported; iOS Safari gets a subtle visual tactile pulse because it does not expose web vibration.
 
 ## Content Policy
 
