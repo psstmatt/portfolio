@@ -22,10 +22,10 @@ favicon.svg  browser icon
 ## Interaction
 
 - Header shows `Matt Reynolds` and `Software Designer`.
-- Header nav shows `About`, `Twitter`, and `TikTok`.
+- Header nav shows `About`, `X`, and `TikTok`.
 - Project data lives in one canonical array in `script.js`.
 - The horizontal timeline supports wheel, drag, click/tap, and arrow-key navigation.
-- About opens as a full-screen overlay and includes Email, Twitter, and TikTok links.
+- About opens as a full-screen overlay and includes Email, X, and TikTok links.
 - Media slots are neutral placeholders with one TODO comment for the later image/video pass.
 
 ## Validation

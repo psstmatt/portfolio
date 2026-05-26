@@ -1,53 +1,61 @@
-const EMAIL_SUBJECT = "Hey Matt, I clicked the email link on your website to chat about...";
+const EMAIL_SUBJECT = "Hey, Matt, I clicked the email link on your website to chat about...";
 
 const projects = [
   {
-    title: "AI Cast",
-    year: "2026",
-    company: "TikTok",
-    platforms: ["iOS", "Android"],
-    media: { type: "phone", width: 196, height: 371 },
+    title: "Search",
+    year: "2014",
+    company: "Boeing",
+    platforms: ["Web"],
+    media: { type: "desktop", width: 500, height: 410 },
     margin: { left: 0, right: 1.75 }
   },
   {
-    title: "Ads Manager",
-    year: "2025",
-    company: "TikTok",
-    platforms: ["Desktop Web"],
-    media: { type: "desktop", width: 646, height: 410 },
+    title: "Skywalker",
+    year: "2015",
+    company: "Boeing",
+    platforms: ["Web", "Windows"],
+    media: { type: "desktop", width: 646, height: 420 },
     margin: { left: 1.75, right: 1.75 }
   },
   {
-    title: "Symphony Creative Studio",
-    year: "2024",
-    company: "TikTok",
-    platforms: ["Desktop Web"],
-    media: { type: "desktop", width: 606, height: 410 },
-    margin: { left: 1.75, right: 1.75 }
-  },
-  {
-    title: "Ad-Free Subscriptions",
-    year: "2024",
-    company: "Meta",
+    title: "Scratchpad",
+    year: "2016",
+    company: "Expedia",
     platforms: ["Web", "iOS", "Android"],
     media: { type: "phone", width: 196, height: 371 },
     margin: { left: 1.75, right: 1.75 }
   },
   {
-    title: "Meta Accounts",
-    year: "2024",
-    company: "Meta",
-    platforms: ["Web", "iOS", "Android"],
-    media: { type: "desktop", width: 530, height: 410 },
+    title: "Accelerated Mobile Pages",
+    year: "2017",
+    company: "Expedia",
+    platforms: ["Web"],
+    media: { type: "phone", width: 196, height: 371 },
+    margin: { left: 1.75, right: 1.75 }
+  },
+  {
+    title: "Fleet Match",
+    year: "2017",
+    company: "Uber",
+    platforms: ["Web"],
+    media: { type: "web", width: 488, height: 336 },
     margin: { left: 1.75, right: 2.5 }
   },
   {
-    title: "Group Rides",
-    year: "2022",
+    title: "Recruiter",
+    year: "2018",
     company: "Uber",
     platforms: ["Web", "iOS", "Android"],
-    media: { type: "phone", width: 196, height: 371 },
+    media: { type: "desktop", width: 500, height: 410 },
     margin: { left: 2.5, right: 1.375 }
+  },
+  {
+    title: "Multi-driver Dispatch",
+    year: "2019",
+    company: "Uber",
+    platforms: ["iOS", "Android"],
+    media: { type: "desktop", width: 646, height: 420 },
+    margin: { left: 1.375, right: 1.375 }
   },
   {
     title: "Reserve",
@@ -63,62 +71,54 @@ const projects = [
     company: "Uber",
     platforms: ["Web", "iOS", "Android"],
     media: { type: "phone", width: 196, height: 371 },
-    margin: { left: 1.375, right: 1.375 }
-  },
-  {
-    title: "Multi-driver Dispatch",
-    year: "2019",
-    company: "Uber",
-    platforms: ["iOS", "Android"],
-    media: { type: "desktop", width: 646, height: 420 },
     margin: { left: 1.375, right: 1.75 }
   },
   {
-    title: "Recruiter",
-    year: "2018",
+    title: "Group Rides",
+    year: "2022",
     company: "Uber",
     platforms: ["Web", "iOS", "Android"],
-    media: { type: "desktop", width: 500, height: 410 },
+    media: { type: "phone", width: 196, height: 371 },
     margin: { left: 1.75, right: 1.75 }
   },
   {
-    title: "Fleet Match",
-    year: "2017",
-    company: "Uber",
-    platforms: ["Web"],
-    media: { type: "web", width: 488, height: 336 },
+    title: "Meta Ad-Free Subscriptions",
+    year: "2024",
+    company: "Meta",
+    platforms: ["Web", "iOS", "Android"],
+    media: { type: "phone", width: 196, height: 371 },
     margin: { left: 1.75, right: 3.75 }
   },
   {
-    title: "Accelerated Mobile Pages",
-    year: "2017",
-    company: "Expedia",
-    platforms: ["Web"],
-    media: { type: "phone", width: 196, height: 371 },
+    title: "Meta Accounts",
+    year: "2024",
+    company: "Meta",
+    platforms: ["Web", "iOS", "Android"],
+    media: { type: "desktop", width: 530, height: 410 },
     margin: { left: 3.75, right: 1.75 }
   },
   {
-    title: "Scratchpad",
-    year: "2016",
-    company: "Expedia",
-    platforms: ["Web", "iOS", "Android"],
-    media: { type: "phone", width: 196, height: 371 },
+    title: "Symphony",
+    year: "2024",
+    company: "TikTok",
+    platforms: ["Desktop Web"],
+    media: { type: "desktop", width: 606, height: 410 },
     margin: { left: 1.75, right: 4 }
   },
   {
-    title: "Skywalker",
-    year: "2015",
-    company: "Boeing",
-    platforms: ["Web", "Windows"],
-    media: { type: "desktop", width: 646, height: 420 },
+    title: "TikTok Ads Manager",
+    year: "2025",
+    company: "TikTok",
+    platforms: ["Desktop Web"],
+    media: { type: "desktop", width: 646, height: 410 },
     margin: { left: 4, right: 1.75 }
   },
   {
-    title: "Search",
-    year: "2014",
-    company: "Boeing",
-    platforms: ["Web"],
-    media: { type: "desktop", width: 500, height: 410 },
+    title: "AI Cast",
+    year: "2026",
+    company: "TikTok",
+    platforms: ["iOS", "Android"],
+    media: { type: "phone", width: 196, height: 371 },
     margin: { left: 1.75, right: 0 }
   }
 ];
