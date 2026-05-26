@@ -1,84 +1,29 @@
 const EMAIL_SUBJECT = "Hey, Matt, I clicked the email link on your website to chat about...";
+const MOBILE_MEDIA_SCALE = 0.36;
 
 const projects = [
   {
-    title: "Search",
-    year: "2014",
-    company: "Boeing",
-    platforms: ["Web"],
-    media: { type: "desktop", width: 500, height: 410 },
+    title: "AI Cast",
+    year: "2026",
+    company: "TikTok",
+    platforms: ["iOS", "Android"],
+    media: { src: "images/projects/webp/10-Lobe.webp", width: 669, height: 382 },
     margin: { left: 0, right: 1.75 }
   },
   {
-    title: "Skywalker",
-    year: "2015",
-    company: "Boeing",
-    platforms: ["Web", "Windows"],
-    media: { type: "desktop", width: 646, height: 420 },
+    title: "TikTok Ads Manager",
+    year: "2025",
+    company: "TikTok",
+    platforms: ["Desktop Web"],
+    media: { src: "images/projects/webp/09-Instant-Articles.webp", width: 196, height: 398 },
     margin: { left: 1.75, right: 1.75 }
   },
   {
-    title: "Scratchpad",
-    year: "2016",
-    company: "Expedia",
-    platforms: ["Web", "iOS", "Android"],
-    media: { type: "phone", width: 196, height: 371 },
-    margin: { left: 1.75, right: 1.75 }
-  },
-  {
-    title: "Accelerated Mobile Pages",
-    year: "2017",
-    company: "Expedia",
-    platforms: ["Web"],
-    media: { type: "phone", width: 196, height: 371 },
-    margin: { left: 1.75, right: 1.75 }
-  },
-  {
-    title: "Fleet Match",
-    year: "2017",
-    company: "Uber",
-    platforms: ["Web"],
-    media: { type: "web", width: 488, height: 336 },
-    margin: { left: 1.75, right: 2.5 }
-  },
-  {
-    title: "Recruiter",
-    year: "2018",
-    company: "Uber",
-    platforms: ["Web", "iOS", "Android"],
-    media: { type: "desktop", width: 500, height: 410 },
-    margin: { left: 2.5, right: 1.375 }
-  },
-  {
-    title: "Multi-driver Dispatch",
-    year: "2019",
-    company: "Uber",
-    platforms: ["iOS", "Android"],
-    media: { type: "desktop", width: 646, height: 420 },
-    margin: { left: 1.375, right: 1.375 }
-  },
-  {
-    title: "Reserve",
-    year: "2021",
-    company: "Uber",
-    platforms: ["iOS", "Android", "Web"],
-    media: { type: "phone", width: 196, height: 371 },
-    margin: { left: 1.375, right: 1.375 }
-  },
-  {
-    title: "Connect",
-    year: "2020",
-    company: "Uber",
-    platforms: ["Web", "iOS", "Android"],
-    media: { type: "phone", width: 196, height: 371 },
-    margin: { left: 1.375, right: 1.75 }
-  },
-  {
-    title: "Group Rides",
-    year: "2022",
-    company: "Uber",
-    platforms: ["Web", "iOS", "Android"],
-    media: { type: "phone", width: 196, height: 371 },
+    title: "Symphony",
+    year: "2024",
+    company: "TikTok",
+    platforms: ["Desktop Web"],
+    media: { src: "images/projects/webp/08-Paper.webp", width: 196, height: 408 },
     margin: { left: 1.75, right: 1.75 }
   },
   {
@@ -86,43 +31,101 @@ const projects = [
     year: "2024",
     company: "Meta",
     platforms: ["Web", "iOS", "Android"],
-    media: { type: "phone", width: 196, height: 371 },
-    margin: { left: 1.75, right: 3.75 }
+    media: { src: "images/projects/webp/07-Nest.webp", width: 371, height: 371 },
+    margin: { left: 1.75, right: 1.75 }
   },
   {
     title: "Meta Accounts",
     year: "2024",
     company: "Meta",
     platforms: ["Web", "iOS", "Android"],
-    media: { type: "desktop", width: 530, height: 410 },
+    media: { src: "images/projects/webp/06-PushPopPress.webp", width: 476, height: 371 },
+    margin: { left: 1.75, right: 2.5 }
+  },
+  {
+    title: "Group Rides",
+    year: "2022",
+    company: "Uber",
+    platforms: ["Web", "iOS", "Android"],
+    media: { src: "images/projects/webp/05.02-iPad-Photos.webp", width: 476, height: 371 },
+    margin: { left: 2.5, right: 1.375 }
+  },
+  {
+    title: "Reserve",
+    year: "2021",
+    company: "Uber",
+    platforms: ["iOS", "Android", "Web"],
+    media: { src: "images/projects/webp/05.01-iPad-Maps.webp", width: 476, height: 371 },
+    margin: { left: 1.375, right: 1.375 }
+  },
+  {
+    title: "Connect",
+    year: "2020",
+    company: "Uber",
+    platforms: ["Web", "iOS", "Android"],
+    media: { src: "images/projects/webp/04.05-iPhone-Maps.webp", width: 196, height: 371 },
+    margin: { left: 1.375, right: 1.375 }
+  },
+  {
+    title: "Multi-driver Dispatch",
+    year: "2019",
+    company: "Uber",
+    platforms: ["iOS", "Android"],
+    media: { src: "images/projects/webp/04.04-iPhone-Photos.webp", width: 196, height: 371 },
+    margin: { left: 1.375, right: 1.75 }
+  },
+  {
+    title: "Recruiter",
+    year: "2018",
+    company: "Uber",
+    platforms: ["Web", "iOS", "Android"],
+    media: { src: "images/projects/webp/04.03-iPhone-Camera.webp", width: 196, height: 371 },
+    margin: { left: 1.75, right: 1.75 }
+  },
+  {
+    title: "Fleet Match",
+    year: "2017",
+    company: "Uber",
+    platforms: ["Web"],
+    media: { src: "images/projects/webp/04.02-iPhone-Settings.webp", width: 196, height: 371 },
+    margin: { left: 1.75, right: 3.75 }
+  },
+  {
+    title: "Accelerated Mobile Pages",
+    year: "2017",
+    company: "Expedia",
+    platforms: ["Web"],
+    media: { src: "images/projects/webp/04.01-iPhone-Battery.webp", width: 196, height: 371 },
     margin: { left: 3.75, right: 1.75 }
   },
   {
-    title: "Symphony",
-    year: "2024",
-    company: "TikTok",
-    platforms: ["Desktop Web"],
-    media: { type: "desktop", width: 606, height: 410 },
+    title: "Scratchpad",
+    year: "2016",
+    company: "Expedia",
+    platforms: ["Web", "iOS", "Android"],
+    media: { src: "images/projects/webp/03-TimeMachine.webp", width: 646, height: 530 },
     margin: { left: 1.75, right: 4 }
   },
   {
-    title: "TikTok Ads Manager",
-    year: "2025",
-    company: "TikTok",
-    platforms: ["Desktop Web"],
-    media: { type: "desktop", width: 646, height: 410 },
+    title: "Skywalker",
+    year: "2015",
+    company: "Boeing",
+    platforms: ["Web", "Windows"],
+    media: { src: "images/projects/webp/02-Photobooth.webp", width: 501, height: 495 },
     margin: { left: 4, right: 1.75 }
   },
   {
-    title: "AI Cast",
-    year: "2026",
-    company: "TikTok",
-    platforms: ["iOS", "Android"],
-    media: { type: "phone", width: 196, height: 371 },
+    title: "Search",
+    year: "2014",
+    company: "Boeing",
+    platforms: ["Web"],
+    media: { src: "images/projects/webp/01-DeliciousLibrary.webp", width: 489, height: 336 },
     margin: { left: 1.75, right: 0 }
   }
 ];
 
+const imagePreload = document.querySelector("#image-preload");
+const headerDate = document.querySelector("#header-date");
 const timelineViewport = document.querySelector("#timeline-viewport");
 const timelineTrack = document.querySelector("#timeline-track");
 const aboutPanel = document.querySelector("#about-panel");
@@ -169,8 +172,8 @@ function renderProject(project, index) {
       style="
         --media-width: ${project.media.width}px;
         --media-height: ${project.media.height}px;
-        --mobile-media-width: ${Math.round(project.media.width * 0.72)}px;
-        --mobile-media-height: ${Math.round(Math.min(project.media.height, 340) * 0.72)}px;
+        --mobile-media-width: ${Math.round(project.media.width * MOBILE_MEDIA_SCALE)}px;
+        --mobile-media-height: ${Math.round(project.media.height * MOBILE_MEDIA_SCALE)}px;
         --margin-left: ${project.margin.left}em;
         --margin-right: ${project.margin.right}em;
         --z-index: ${projects.length - index};
@@ -197,7 +200,7 @@ function renderProject(project, index) {
           </div>
         </div>
         <button class="project-media" type="button" aria-label="Show ${escapeHtml(project.title)}" data-index="${index}">
-          <span class="media-placeholder ${escapeHtml(project.media.type)}" data-company="${escapeHtml(project.company)}"></span>
+          <img class="project-image" src="${escapeHtml(project.media.src)}" alt="${escapeHtml(project.title)}">
         </button>
       </div>
     </article>
@@ -205,7 +208,9 @@ function renderProject(project, index) {
 }
 
 function renderProjects() {
-  // TODO: Replace neutral placeholders with approved project images/video in the media pass.
+  imagePreload.innerHTML = projects
+    .map((project) => `<img src="${escapeHtml(project.media.src)}" alt="">`)
+    .join("");
   timelineTrack.innerHTML = projects.map(renderProject).join("");
   updateActiveProject(0, false);
 }
@@ -217,6 +222,7 @@ function projectElements() {
 function updateActiveProject(index, shouldScroll = true) {
   const nextIndex = Math.max(0, Math.min(projects.length - 1, index));
   activeIndex = nextIndex;
+  if (headerDate) headerDate.textContent = projects[activeIndex].year;
 
   projectElements().forEach((project, projectIndex) => {
     project.classList.toggle("is-active", projectIndex === activeIndex);
@@ -256,6 +262,11 @@ function updateActiveFromScroll() {
   updateActiveProject(closestIndex, false);
 }
 
+function scheduleActiveFromScroll(delay = 70) {
+  window.clearTimeout(scrollTimer);
+  scrollTimer = window.setTimeout(updateActiveFromScroll, delay);
+}
+
 function openAbout() {
   aboutPanel.classList.add("is-open");
   aboutPanel.setAttribute("aria-hidden", "false");
@@ -279,6 +290,7 @@ function handleTimelineWheel(event) {
   if (!delta) return;
 
   timelineViewport.scrollLeft += delta;
+  updateActiveFromScroll();
   event.preventDefault();
 }
 
@@ -293,6 +305,7 @@ function handlePointerMove(event) {
   if (!isPointerDown) return;
   const delta = dragStartX - event.clientX;
   timelineViewport.scrollLeft = dragStartScrollLeft + delta;
+  scheduleActiveFromScroll(35);
 }
 
 function handlePointerUp(event) {
@@ -327,8 +340,7 @@ timelineTrack.addEventListener("click", (event) => {
 });
 
 timelineViewport.addEventListener("scroll", () => {
-  window.clearTimeout(scrollTimer);
-  scrollTimer = window.setTimeout(updateActiveFromScroll, 70);
+  scheduleActiveFromScroll();
 }, { passive: true });
 
 timelineViewport.addEventListener("wheel", handleTimelineWheel, { passive: false });

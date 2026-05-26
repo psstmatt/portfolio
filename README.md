@@ -8,7 +8,7 @@ Static portfolio rebuild using the reference structure: fixed identity header, h
 - Plain CSS
 - Vanilla JavaScript
 - No build step
-- Neutral CSS media placeholders until the image/video pass
+- Local temporary image assets mapped from the reference rail
 
 ## Files
 
@@ -21,12 +21,12 @@ favicon.svg  browser icon
 
 ## Interaction
 
-- Header shows `Matt Reynolds` and `Software Designer`.
+- Header shows `Matt Reynolds` and the active project year.
 - Header nav shows `About`, `X`, and `TikTok`.
 - Project data lives in one canonical array in `script.js`.
 - The horizontal timeline supports wheel, drag, click/tap, and arrow-key navigation.
 - About opens as a full-screen overlay and includes Email, X, and TikTok links.
-- Media slots are neutral placeholders with one TODO comment for the later image/video pass.
+- Media slots use local temporary image assets mapped from the reference rail.
 
 ## Validation
 

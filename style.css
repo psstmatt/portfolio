@@ -27,11 +27,10 @@
   --background: #ffffff;
   --ink: #000000;
   --muted: rgba(0, 0, 0, 0.4);
-  --placeholder: #eeeeee;
-  --placeholder-line: rgba(0, 0, 0, 0.08);
   --grid-width: min(1000px, calc(100% - 300px));
   --header-height: 114px;
   --timeline-height: 530px;
+  --viewport-gutter: 180px;
 }
 
 * {
@@ -104,7 +103,7 @@ p {
   align-items: center;
   display: grid;
   grid-template-columns: [full-start] 1fr [content-start] var(--grid-width) [content-end] 1fr [full-end];
-  grid-template-rows: 1fr min(740px, calc(100vh - 260px)) 1fr;
+  grid-template-rows: 1fr min(740px, calc(100vh - var(--viewport-gutter))) 1fr;
   height: 100vh;
   max-height: 100vh;
   overscroll-behavior: contain;
@@ -290,9 +289,9 @@ p {
 
 .gallery-content-container {
   align-items: center;
-  display: flex;
+  display: none;
   justify-content: center;
-  margin-right: 7.5em;
+  margin-right: 0;
   opacity: 0;
   pointer-events: none;
   transform: translate3d(-18px, 0, 0) scale(0.98);
@@ -320,6 +319,10 @@ p {
 
 .gallery-column:last-of-type {
   margin-right: 0;
+}
+
+.gallery-column:nth-child(2) {
+  display: none;
 }
 
 .gallery-title {
@@ -365,7 +368,7 @@ p {
 
 .gallery-play {
   border: none;
-  display: block;
+  display: none;
   fill: none;
   height: 2.2em;
   margin-top: 2em;
@@ -399,54 +402,18 @@ p {
   width: var(--media-width);
 }
 
-.media-placeholder {
-  align-items: center;
-  background:
-    linear-gradient(120deg, rgba(0, 0, 0, 0.05), transparent 32%),
-    linear-gradient(0deg, var(--placeholder), var(--placeholder));
-  box-shadow: 0 0 82px rgba(0, 0, 0, 0.08);
-  display: flex;
+.project-image {
+  display: block;
   height: 100%;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
+  object-fit: contain;
   transform: translateZ(0);
   transition: opacity 280ms ease, transform 280ms ease;
   width: 100%;
 }
 
-.project:not(.is-active) .media-placeholder {
-  opacity: 0.72;
+.project:not(.is-active) .project-image {
+  opacity: 0.9;
   transform: translate3d(0, 0, 0) scale(0.985);
-}
-
-.media-placeholder::before {
-  background:
-    linear-gradient(90deg, transparent, var(--placeholder-line), transparent),
-    repeating-linear-gradient(0deg, transparent 0 28px, rgba(0, 0, 0, 0.045) 29px, transparent 30px),
-    repeating-linear-gradient(90deg, transparent 0 38px, rgba(0, 0, 0, 0.04) 39px, transparent 40px);
-  content: "";
-  inset: 0;
-  opacity: 0.68;
-  position: absolute;
-}
-
-.media-placeholder::after {
-  color: rgba(0, 0, 0, 0.24);
-  content: attr(data-company);
-  font-size: 0.7em;
-  font-weight: 200;
-  letter-spacing: 0.02em;
-  position: relative;
-}
-
-.media-placeholder.phone {
-  border-radius: 22px;
-}
-
-.media-placeholder.web,
-.media-placeholder.desktop {
-  border-radius: 0;
 }
 
 .about-root {
@@ -532,23 +499,16 @@ p {
   flex: 1 1;
 }
 
-.about-placeholder {
-  background:
-    linear-gradient(135deg, rgba(0, 0, 0, 0.05), transparent 38%),
-    linear-gradient(0deg, #f4f4f4, #f4f4f4);
+.about-media {
+  background-image: url("images/about/about.webp");
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: contain;
-  box-shadow: 0 0 100px rgba(0, 0, 0, 0.07);
   height: min(520px, 62vh);
   min-height: 100%;
   min-width: 100%;
   position: relative;
   width: min(420px, 30vw);
-}
-
-.about-placeholder::after {
-  content: "";
 }
 
 .back-button {
@@ -621,9 +581,9 @@ p {
 
 @media only screen and (max-width: 600px) and (orientation: portrait) {
   :root {
-    --grid-width: min(480px, calc(100% - 40px));
+    --grid-width: min(480px, calc(100% - 112px));
     --header-height: 142px;
-    --timeline-height: 370px;
+    --timeline-height: 340px;
   }
 
   body {
@@ -642,7 +602,7 @@ p {
 
   .grid {
     grid-template-columns: [full-start] 1fr [content-start] var(--grid-width) [content-end] 1fr [full-end];
-    grid-template-rows: 1fr min(370px, calc(100vh - 150px)) 1fr;
+    grid-template-rows: 1fr min(340px, calc(100vh - 150px)) 1fr;
   }
 
   .header {
@@ -691,6 +651,10 @@ p {
     justify-content: flex-end;
     margin-left: calc(var(--margin-left) * 0.44);
     margin-right: calc(var(--margin-right) * 0.44);
+  }
+
+  .project:first-child {
+    margin-left: -1.75em;
   }
 
   .project-inner {
@@ -804,7 +768,7 @@ p {
     line-height: 1.2em;
   }
 
-  .about-placeholder {
+  .about-media {
     height: min(300px, 34vh);
     width: min(320px, 74vw);
   }
